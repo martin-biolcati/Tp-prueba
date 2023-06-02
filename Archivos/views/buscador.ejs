@@ -1,0 +1,31 @@
+<%- include('./partials/head')  %>
+<%- include('./partials/header')  %>
+<!-- Novedades -->
+<!-- Novedades -->
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title">Resultados de búsqueda</h2>
+        </div>
+        <!-- Show the "ultimos" products -->
+        <div class="container products-wrapper">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <section class="product-box">
+                <main>
+                    <% if(encontroResultados){%>
+                    <h1>Estos son los resultados de tu busqueda "<%= busqueda %>"</h1>
+                    <ul>
+                        <%for(let i = 0; i < resultados.length ; i++){%>
+                            <li><%= resultados[i].nombre%></li>
+                        <%}%>
+                    </ul>
+                    <%} else {%>
+                        <h1>No se encontro lo que buscas</h1>
+                    <%}%>
+                </main>
+            </section>
+        </div>
+            </div>
+        </div>
+<%- include('./partials/footer')  %>

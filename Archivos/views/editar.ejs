@@ -1,0 +1,36 @@
+<%- include('./partials/head')  %>
+<%- include('./partials/header')  %>
+	<!-- Novedades -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Editar mi perfil</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+			<form class= "datosUsuarios" action="" method="GET">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" value="">
+                </div>
+                    <div>
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" name="usuario" value="">
+                    </div>
+                    <div>
+                        <label for="contraseña">Contraseña:</label>
+                        <input type="password" name="contraseña" value="">
+                    </div>
+                    <div>
+                        <label for="fecha">Fecha de nacimiento:</label>
+                        <input type="date" name="fecha" value="">
+                    </div>
+                    <div>
+                        <label for="documento">Nro de documento:</label>
+                        <input type="number" name="documento" value="">
+                    </div>
+                    <div>
+                        <label for="imagen">Foto de perfil:</label>
+                        <input type="file" name="imagen" value="">
+                    </div>
+        </div>
+<%- include('./partials/footer')  %>

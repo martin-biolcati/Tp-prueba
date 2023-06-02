@@ -1,0 +1,43 @@
+<%- include('./partials/head')  %>
+<%- include('./partials/header')  %>
+
+<div class="container products-wrapper">
+    
+    <div class="d-flex align-items-center">
+         
+        <h2 class="products-title"><%= productos[0].nombre %></h2> 
+        <p class="product-detail-description">
+            <a href="product-add.html">Editar</a>
+        </p>
+    </div>
+    <div class="product-detail">
+    
+        <div class="row">
+            <article class="col-12 col-lg-8 product-detail-info">
+                <img src=<%= productos[0].image %> alt="" class="product-detail-img">
+                <p class="product-detail-description"><%= productos[0].descripcion %></p>
+            </article>
+                <div class="col-12 col-lg-4">
+                    
+                    <section class="comments">
+                    <% for(let i=0; i<4; i++){ %> 
+                    <article>
+                        <img src="<%= comentarios[i].foto_de_perfil%>" alt="">
+                        <div class="data">
+                            <p class="user">
+                            <strong> <a href="/users/perfil"><%= comentarios[i].nombre %> </a> </strong>
+                            <%= comentarios[i].comentario %></p>
+                        </div>
+                    </article>
+                    <%}%>
+                </section>
+                <form class="form" action="" method="POST">
+                    <input class="form-input" type="text" value="" placeholder="Agregar comentario">
+                    <button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('./partials/footer')  %>

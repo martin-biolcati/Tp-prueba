@@ -1,0 +1,49 @@
+<%- include('./partials/head')  %>
+<%- include('./partials/header')  %>
+<!-- Datos del usuario "https://via.placeholder.com/150"-->
+<section class="info-usuario container products-wrapper">
+    <div class="row">
+        <div class="img-container offset-3 col-2">
+        </div>
+        <div class="data-container col-6">
+            <div class="d-flex align-items-center ">
+                <h1 class="main-title">
+                    <a href="/users/editar">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </h1>
+                <a class="btn mt-3 ml-4" href="">SEGUIR</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Datos del usuario -->
+
+
+<!-- Mis productos -->
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title">Novedades</h2>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <section class="product-box">
+            </section>
+            </div>
+<section>
+    <article>
+        <div>
+            <h1 class="products-title">Perfil</h1>
+        </div>
+        <h1 class="products-title">Nombre del usuario</h1>
+        <p class="products-title"> Descripcion del curso</p>
+        <div>
+            <a class="products-title" href="/users/editar/<%= clientes.id %>">Editar perfil</a>
+        </div>
+    </article>
+</section>
+</div>
+<!-- /Mis productos -->
+
+<%- include('./partials/footer')  %>
