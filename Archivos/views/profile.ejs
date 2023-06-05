@@ -7,43 +7,36 @@
         </div>
         <div class="data-container col-6">
             <div class="d-flex align-items-center ">
+                <h1 class="products-title"><%= clientes.nombre %></h1><br>
                 <h1 class="main-title">
-                    <a href="/users/editar">
+                    <a href="/users/editar/">
                         <i class="fas fa-cog"></i>
                     </a>
                 </h1>
                 <a class="btn mt-3 ml-4" href="">SEGUIR</a>
             </div>
-            </div>
+        </div>
         </div>
     </div>
 </section>
-<!-- /Datos del usuario -->
 
-
-<!-- Mis productos -->
 <div class="container products-wrapper">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="products-title">Novedades</h2>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3">
-            <section class="product-box">
-            </section>
-            </div>
-<section>
-    <article>
-        <div>
-            <h1 class="products-title">Perfil</h1>
-        </div>
-        <h1 class="products-title">Nombre del usuario</h1>
-        <p class="products-title"> Descripcion del curso</p>
-        <div>
-            <a class="products-title" href="/users/editar/<%= clientes.id %>">Editar perfil</a>
-        </div>
-    </article>
-</section>
-</div>
-<!-- /Mis productos -->
-
+    <div class="row"> 
+        <section>
+            <article>
+                <div>
+                    <h1 class="products-title">Nombre: <%= clientes.nombre %></h1>
+                </div>
+                <p class="products-title">Fecha de nacimiento: <%= clientes.fecha_de_nacimiento %></p>
+                <p class="products-title">Documento: <%= clientes.dni %></p>
+                <p class="products-title"> <%= clientes.foto_de_perfil %></p>
+                <div>
+                    <a class="products-title" href="/users/editar/">Editar perfil</a>
+                </div>
+                <form action="/users/delete/<%= clientes.id %>" method="POST">
+                    <input type="submit" value="Borrar cuenta" />
+                </form>
+            </article>
+        </section>
+    </div>
 <%- include('./partials/footer')  %>

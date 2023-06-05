@@ -11,13 +11,10 @@ const controlador = {
         )
     },
     perfil: function(req, res){
-        let id = req.params.id
+        let id = req.session.cliente.id
         db.clientes.findByPk(id)
         .then(function(clientes){
-            res.render('profile', {
-                usuarioLogueado:true, 
-                clientes:clientes,
-            })
+            res.render('profile', {usuarioLogueado:true, clientes:clientes})
         })
         .catch(function(err){
             console.log(err)
@@ -48,14 +45,15 @@ const controlador = {
             foto_de_perfil
         })
         .then(function(resp){   
-            res.redirect('/users/perfil')
+            console.log(resp);
+            res.redirect('/users/login')
         })
         .catch(function(err){
             console.log(err)
         })
     },
     checkUser: function(req, res){
-        let {email, password, rememberMe} = req.body
+        let {email, contraseña, rememberMe} = req.body
         db.clientes.findOne({
             where:{
                 email:email
@@ -64,10 +62,10 @@ const controlador = {
         })
         
         .then(function(clientes){
-            let comparacionPassword = bcrypt.compareSync(password, clientes.password)
-            console.log('llega a validar el hash')
+            if(clientes != null){
+            let comparacionPassword = bcrypt.compareSync(contraseña, clientes.password)
             if(comparacionPassword){
-                req.session.usuarioLogueado  = {
+                req.session.cliente  = {
                     id: clientes.id,
                     nombre: clientes.nombre,
                     email:clientes.email
@@ -85,8 +83,11 @@ const controlador = {
                         }
                     )
                 }
-                res.redirect('/users/perfil/'+ clientes.id)
+                res.redirect('/users/perfil/')
             }
+        }else{
+            res.redirect('/users/register')
+        }
         })
         .catch(function(err){
             console.log(err)

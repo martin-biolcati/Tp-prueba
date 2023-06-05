@@ -20,6 +20,10 @@ const controller ={
         .catch(function(error){console.log(error);})
         
     
+    },
+    logout: function(req, res){
+        req.session.cliente = undefined
+        res.redirect('/')
     }
 }
 

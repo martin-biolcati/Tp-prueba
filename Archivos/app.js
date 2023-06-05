@@ -36,9 +36,9 @@ app.use(function(req,res, next){
 app.use(function(req, res, next){
   console.log(req.cookies.rememberMe)
   
-  if(req.session.clientes !== undefined){
+  if(req.session.cliente !== undefined){
     res.locals.isLogged = true
-    res.locals.clientes = req.session.clientes
+    res.locals.clientes = req.session.cliente
   } else {
     res.locals.isLogged = false
   }

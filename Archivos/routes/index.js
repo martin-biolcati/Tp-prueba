@@ -3,6 +3,8 @@ var router = express.Router();
 const user = require('../controllers/index')
 
 /* GET home page. */
-router.get('/', user.index)
+router.get('/', user.index);
+router.post('/', user.logout);
+
 
 module.exports = router;
