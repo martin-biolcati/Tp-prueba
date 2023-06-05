@@ -21,7 +21,7 @@ const controlador = {
         })
     },
     perfilEdit: function(req, res){
-        let id = req.params.id
+        let id = req.session.cliente.id
         db.clientes.findByPk(id)
         .then(function(clientes){
             res.render('editar', {
@@ -94,7 +94,7 @@ const controlador = {
         })
     },
     update: function(req, res){
-        let id = req.params.id
+        let id = req.session.cliente.id
         let {nombre, email} = req.body
         db.clientes.update({
             nombre:nombre,
@@ -112,7 +112,7 @@ const controlador = {
         })
     },
     delete: function(req, res){
-        let id = req.params.id
+        let id = req.session.cliente.id
 
         db.clientes.destroy({
             where:{
@@ -120,6 +120,7 @@ const controlador = {
             }
         })
         .then(function(resp){
+            req.session.cliente = undefined
             res.redirect('/')
         })
         .catch(function(err){

@@ -5,7 +5,7 @@ let bcrypt = require('bcryptjs')
 const controladores={
     productoAdd: function(req,res){
         res.render(
-            'product-add',{ usuarioLogueado: true,}
+            'product-add',
         )
     },
     productos: function(req,res){
