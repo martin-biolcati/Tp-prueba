@@ -37,7 +37,10 @@
                     <button class="tengo_cuenta" type="submit">Crear cuenta</button>
                     <br>
                     <br>
-            </form>
+                                
+            </form><% if(locals.errors){  %> 
+                        <p class= “error”> <%= errors.message %> </p>
+                     <% } %>  
                 <button class="tengo_cuenta" type="submit"><a href="/users/login">Ya tengo cuenta</a></button>
 </div>
 <%- include('./partials/footer.ejs') %>

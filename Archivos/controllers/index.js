@@ -23,6 +23,7 @@ const controller ={
     },
     logout: function(req, res){
         req.session.cliente = undefined
+        res.clearCookie('rememberUser')
         res.redirect('/')
     }
 }

@@ -2,8 +2,19 @@ const db = require('../database/models/index');
 const bcrypt = require('bcryptjs')
 const controlador = {
     register: function(req, res){
-        console.log(req.session)
-        res.render('register', {usuarioLogueado:false})
+        /*let errors = {}
+        if(req.body.email == "" && req.body.email){
+            errors.message = "El email no puede estar vacío."; 
+            res.locals.errors = errors;
+
+            return res.render('register'); 
+        }
+        if(req.body.password == "" || req.body.password.length <3 ){
+            errors.message = "La contraseña debe tener al menos 3 caracteres."; 
+            res.locals.errors = errors; 
+            return res.render('register'); 
+        }*/
+        res.render('register', {})
     },
     login: function(req,res){
         res.render(
@@ -54,6 +65,8 @@ const controlador = {
     },
     checkUser: function(req, res){
         let {email, contraseña, rememberMe} = req.body
+        console.log(req.body);
+        console.log(rememberMe);
         db.clientes.findOne({
             where:{
                 email:email
@@ -75,8 +88,6 @@ const controlador = {
                         'rememberUser', 
                         {
                             id: clientes.id,
-                            nombre: clientes.nombre,
-                            email:clientes.email
                         },
                         {
                             maxAge: 1000 * 60 * 15
@@ -84,6 +95,8 @@ const controlador = {
                     )
                 }
                 res.redirect('/users/perfil/')
+            }else{
+                res.redirect('/users/register')
             }
         }else{
             res.redirect('/users/register')
