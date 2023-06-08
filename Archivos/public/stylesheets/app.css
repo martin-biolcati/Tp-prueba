@@ -41,7 +41,9 @@ ol {
   margin: 0;
   padding: 0;
 }
-
+p{
+  color: white;
+}
 a {
   display: inline-block;
   text-decoration: none;

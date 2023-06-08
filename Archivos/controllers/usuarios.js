@@ -17,9 +17,11 @@ const controlador = {
         res.render('register', {})
     },
     login: function(req,res){
-        res.render(
-            'login', {usuarioLogueado:false}
-        )
+        if(req.session.cliente != undefined){
+            res.redirect('/')
+        } else{
+            res.render('login', {usuarioLogueado:false})
+        }
     },
     perfil: function(req, res){
         let id = req.session.cliente.id
@@ -46,22 +48,33 @@ const controlador = {
     },
     create: function(req,res){
         let {email, nombre, password, fecha_de_nacimiento, dni, foto_de_perfil} = req.body
-        let passEncriptada = bcrypt.hashSync(password, 12)
-        db.clientes.create({
-            email, 
-            nombre, 
-            password: passEncriptada, 
-            fecha_de_nacimiento, 
-            dni, 
-            foto_de_perfil
-        })
-        .then(function(resp){   
-            console.log(resp);
-            res.redirect('/users/login')
-        })
-        .catch(function(err){
-            console.log(err)
-        })
+        if(
+            (email.includes('@') && email.includes('.com')) &&
+            (password.length > 2)
+        ){
+            let passEncriptada = bcrypt.hashSync(password, 12)
+            db.clientes.create({
+                email, 
+                nombre, 
+                password: passEncriptada, 
+                fecha_de_nacimiento, 
+                dni, 
+                foto_de_perfil
+            })
+            .then(function(resp){   
+                console.log(resp);
+                res.redirect('/users/login')
+            })
+            .catch(function(err){
+                console.log(err)
+            })
+        } else{
+            console.log(email, password);
+            let errors= {}
+            errors.message = 'Debes ingresar un informacion valida, email valido y contraseña de al menos 3 caracteres'
+            res.locals.errors = errors
+            res.render('register')
+    }
     },
     checkUser: function(req, res){
         let {email, contraseña, rememberMe} = req.body

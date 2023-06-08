@@ -4,9 +4,11 @@ let bcrypt = require('bcryptjs')
 
 const controladores={
     productoAdd: function(req,res){
-        res.render(
-            'product-add',
-        )
+        if(req.session.cliente != undefined){
+            res.render('product-add')
+        }else{
+            res.redirect('/users/login')
+        } 
     },
     productos: function(req,res){
         res.render(
