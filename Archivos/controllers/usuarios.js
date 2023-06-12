@@ -25,7 +25,7 @@ const controlador = {
     },
     perfil: function(req, res){
         let id = req.session.cliente.id
-        db.clientes.findByPk(id)
+        db.Cliente.findByPk(id)
         .then(function(clientes){
             res.render('profile', {usuarioLogueado:true, clientes:clientes})
         })
@@ -35,7 +35,7 @@ const controlador = {
     },
     perfilEdit: function(req, res){
         let id = req.session.cliente.id
-        db.clientes.findByPk(id)
+        db.Cliente.findByPk(id)
         .then(function(clientes){
             res.render('editar', {
                 usuarioLogueado:true,
@@ -53,7 +53,7 @@ const controlador = {
             (password.length > 2)
         ){
             let passEncriptada = bcrypt.hashSync(password, 12)
-            db.clientes.create({
+            db.Cliente.create({
                 email, 
                 nombre, 
                 password: passEncriptada, 
@@ -80,7 +80,7 @@ const controlador = {
         let {email, contraseña, rememberMe} = req.body
         console.log(req.body);
         console.log(rememberMe);
-        db.clientes.findOne({
+        db.Cliente.findOne({
             where:{
                 email:email
             },
@@ -122,7 +122,7 @@ const controlador = {
     update: function(req, res){
         let id = req.session.cliente.id
         let {nombre, email} = req.body
-        db.clientes.update({
+        db.Cliente.update({
             nombre:nombre,
             email:email
         },{
@@ -140,7 +140,7 @@ const controlador = {
     delete: function(req, res){
         let id = req.session.cliente.id
 
-        db.clientes.destroy({
+        db.Cliente.destroy({
             where:{
                 id: id
             }

@@ -1,14 +1,12 @@
-const { STRING } = require("sequelize")
-
 module.exports = function(sequelize, DataTypes){
-    let alias = 'productos'
+    let alias = 'Producto'
     let columnas = {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true
         },
         nombre: {
-            type: DataTypes.STRING, 
+            type: DataTypes.STRING
         },
         descripcion:{
             type: DataTypes.STRING
@@ -30,14 +28,19 @@ module.exports = function(sequelize, DataTypes){
     
     let config = {
         tablename: 'productos',
-        timestamps: false
+        timestamps: false,
+        underscored:true
     }
     
     const Productos = sequelize.define(alias, columnas, config)
 
     Productos.associate = function(models){
-        Productos.belongsTo(models.clientes, {
-            as: 'clientes',
+        Productos.belongsTo(models.Cliente, {
+            as: 'prodclientes',
+            foreignKey: 'cliente_id'
+        }), 
+        Productos.hasMany(models.Comentario, {
+            as: 'coment',
             foreignKey: 'cliente_id'
         })
     }

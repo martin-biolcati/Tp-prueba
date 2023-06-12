@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-    let alias = 'clientes'
+    let alias = 'Cliente'
     let columnas = {
         id: {
             type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes){
             allowNull: false,
         },
         password:{
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         foto_de_perfil:{
@@ -41,17 +41,22 @@ module.exports = function(sequelize, DataTypes){
 
     let config = {
         tablename: 'clientes',
-        timestamps: false
+        timestamps: false,
+        underscored:true
     }
     
-    const Clientes = sequelize.define(alias, columnas, config)
+    const Cliente = sequelize.define(alias, columnas, config)
 
-    Clientes.associate = function(models){
-        Clientes.hasMany(models.productos, {
+    Cliente.associate = function(models){
+        Cliente.hasMany(models.Producto, {
             as: 'productos',
+            foreignKey: 'cliente_id'
+        }),
+       Cliente.hasMany(models.Comentario, {
+            as: 'coment',
             foreignKey: 'cliente_id'
         })
     }
 
-    return Clientes
+    return Cliente
 }

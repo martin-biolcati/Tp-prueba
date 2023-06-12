@@ -8,23 +8,21 @@
         </div>
         <!-- Show the "ultimos" products -->
         <h2 class="col-12"> 
-            <form class= "datosUsuarios" action="" method="GET">
+            <form class= "datosUsuarios" action="/productos/product-add" method="POST">
                 <div>
-                    <label for="imagen">Usuario:</label>
-                    <input type="file" name="imagen" value="">
-                </div>
-                <div>
-                    <label for="contraseña">Nombre del producto:</label>
-                    <input type="text" name="nombre_prod" value="">
+                    <label for="nombre">Nombre del producto:</label>
+                    <input type="text" name="nombre" value="">
                 </div>
                 <div>
                     <label for="descripcion">Descripcion</label>
                     <input type="text" name="descripcion" value="">
                 </div>
-                <div>
-                    <label for="fecha">Fecha de carga</label>
-                    <input type="date" name="fecha" value="">
-                </div>
+                <!--<div>
+                    <label for="imagen">Foto del auto:</label>
+                    <input type="file" name="imagen" value="">
+                </div> -->
+               
+                <button class="tengo_cuenta" type="submit">Cargar auto</button>
             </form>
 </div>
             

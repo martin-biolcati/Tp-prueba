@@ -2,9 +2,9 @@ const db = require('../database/models/index')
 
 const controller ={
     index: function(req,res){
-        db.productos.findAll({
+        db.Producto.findAll({
             include: [
-                {association: 'clientes'}
+                {association: 'prodclientes'}
             ],
             nest:true,
             raw:true
