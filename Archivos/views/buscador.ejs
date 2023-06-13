@@ -4,29 +4,35 @@
 <!-- Novedades -->
 <div class="container products-wrapper">
     <div class="row">
-        <div class="col-12">
-            <h2 class="products-title">Resultados de búsqueda</h2>
-        </div>
-        <!-- Show the "ultimos" products -->
-        <div class="container products-wrapper">
-            <div class="row">
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <section class="product-box">
-                <main>
-                    <% if(encontroResultados){%>
-                    <h1>Estos son los resultados de tu busqueda "<%= busqueda %>"</h1>
-                    <ul>
-                        <%for(let i = 0; i < resultados.length ; i++){%>
-                            <li><%= resultados[i].nombre%></li>
-                            <li><%= resultados[i].descripcion%></li>
-                        <%}%>
-                    </ul>
-                    <%} else {%>
-                        <h1>No hay resultados para su criterio de búsqueda</h1>
-                    <%}%>
-                </main>
-                    </section>
-                </div>
+        <% if(encontroResultados){%>
+            <div><h1 class="products-title">Estos son los resultados de tu busqueda "<%= busqueda %>"</h1> </div>
+        
+        <% for(let i = 0; i<resultados.length; i++){ %>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <section class="product-box">
+                    <a href="/productos/descripcion/<%=resultados[i].id%>">
+                        <figure class="product-box_image">
+                            <img src=<%= resultados[i].image %> alt="foto de <%= resultados[i].nombre %>">
+                        </figure>
+                        <article class="product-box_data">
+                            <h2><%= resultados[i].nombre %></h2> 
+                            <p><%= resultados[i].clientes?.nombre %> <br><%= resultados[i].descripcion %></p>
+                            <p>comentarios: </p>
+
+                        </article>
+                    </a>
+                </section>
             </div>
-        </div>
+                <%}%>
+        <ul>
+            <%for(let i = 0; i < resultados.length ; i++){%>
+                <li><%= resultados[i].nombre%></li>
+                <li><%= resultados[i].descripcion%></li>
+            <%}%>
+        </ul>
+        <%} else {%>
+            <h1>No hay resultados para su criterio de búsqueda</h1>
+        <%}%>
+    </div>
+</div>
 <%- include('./partials/footer')  %>

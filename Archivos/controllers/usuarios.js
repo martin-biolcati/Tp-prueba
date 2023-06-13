@@ -27,7 +27,7 @@ const controlador = {
         let id = req.session.cliente.id
         db.Cliente.findByPk(id)
         .then(function(clientes){
-            res.render('profile', {usuarioLogueado:true, clientes:clientes})
+            res.render('profile', {usuarioLogueado:true, clientes:clientes, })
         })
         .catch(function(err){
             console.log(err)
@@ -48,33 +48,36 @@ const controlador = {
     },
     create: function(req,res){
         let {email, nombre, password, fecha_de_nacimiento, dni, foto_de_perfil} = req.body
-        if(
-            (email.includes('@') && email.includes('.com')) &&
-            (password.length > 2)
-        ){
-            let passEncriptada = bcrypt.hashSync(password, 12)
-            db.Cliente.create({
-                email, 
-                nombre, 
-                password: passEncriptada, 
-                fecha_de_nacimiento, 
-                dni, 
-                foto_de_perfil
-            })
-            .then(function(resp){   
-                console.log(resp);
-                res.redirect('/users/login')
-            })
-            .catch(function(err){
-                console.log(err)
-            })
-        } else{
-            console.log(email, password);
+        if(email.includes('@') && email.includes('.com')){
+            if(password.length > 2){
+                let passEncriptada = bcrypt.hashSync(password, 12)
+                db.Cliente.create({
+                    email, 
+                    nombre, 
+                    password: passEncriptada, 
+                    fecha_de_nacimiento, 
+                    dni, 
+                    foto_de_perfil
+                })
+                .then(function(resp){   
+                    console.log(resp);
+                    res.redirect('/users/login')
+                })
+                .catch(function(err){
+                    console.log(err)
+                })}
+                else{
+                    let errors= {}
+                    errors.message = 'Debes ingresar una contraseña con 3 caracteres como minimo'
+                    res.locals.errors = errors
+                    res.render('register')
+            }
+        }else{
             let errors= {}
-            errors.message = 'Debes ingresar un informacion valida, email valido y contraseña de al menos 3 caracteres'
+            errors.message = 'Debes ingresar un email valido'
             res.locals.errors = errors
             res.render('register')
-    }
+            }
     },
     checkUser: function(req, res){
         let {email, contraseña, rememberMe} = req.body

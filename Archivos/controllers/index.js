@@ -6,6 +6,9 @@ const controller ={
             include: [
                 {association: 'prodclientes'}
             ],
+            order: [
+                ['created_at', 'DESC'], 
+                ],
             nest:true,
             raw:true
         })

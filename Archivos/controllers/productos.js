@@ -75,19 +75,20 @@ const controladores={
 
     },
     create: function(req, res){
-        let {nombre, nombre_prod, descripcion, fecha} = req.body
+        let {nombre,descripcion,imagen} = req.body
         let id = req.session.cliente.id
-        let tituloEncriptado = bcrypt.hashSync(req.body.nombre_prod, 12)
+        let tituloEncriptado = bcrypt.hashSync(req.body.nombre, 12)
         console.log(tituloEncriptado)
-
+        
         data.Producto.create({
             cliente_id:id,
             nombre,
-            nombre_prod,
+            image:imagen,
             descripcion,
-            fecha
+            
         })
         .then(function(data){
+            console.log(nombre,descripcion)
             res.redirect('/users/perfil/')
         })
         .catch(function(err){
