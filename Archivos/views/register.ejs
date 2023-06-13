@@ -8,26 +8,24 @@
             <h2 class="products-title">Registrate</h2>
         </div>
         <!-- Show the "ultimos" products -->
-            <form class= "datosUsuarios" action="/users/register" method="POST">
+        <div class=" datosUsuarios2">
+            <div class=" datosUsuarios">
+            <form  action="/users/register" method="POST">
                 <div>
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" value="">
+                    <input type="email" name="email" placeholder="Email" value="">
                 </div>
                     <div>
-                        <label for="usuario">Usuario:</label>
-                        <input type="text" name="nombre" value="">
+                        <input type="text" name="nombre" placeholder='Nombre'value="">
                     </div>
                     <div>
-                        <label for="contraseña">Contraseña:</label>
-                        <input type="password" name="password" value="">
+                        <input type="password" name="password" placeholder="Contraseña" value="">
                     </div>
                     <div>
                         <label for="fecha">Fecha de nacimiento:</label>
                         <input type="date" name="fecha_de_nacimiento" value="">
                     </div>
                     <div>
-                        <label for="documento">Nro de documento:</label>
-                        <input type="number" name="dni" value="">
+                        <input type="number" name="dni" placeholder="Nro de documento" value="">
                     </div>
                     <div>
                         <label for="imagen">Foto de perfil:</label>
@@ -36,12 +34,13 @@
                     <br>
                     <button class="tengo_cuenta" type="submit">Crear cuenta</button>
                     <br>
-                    <br>
+                    
                                 
                 </form>
             <% if(locals.errors){  %> 
                         <p class= “error”> <%= errors.message %> </p>
             <% } %>  
                 <button class="tengo_cuenta" type="submit"><a href="/users/login">Ya tengo cuenta</a></button>
-</div>
+            </div>
+        </div>
 <%- include('./partials/footer.ejs') %>
