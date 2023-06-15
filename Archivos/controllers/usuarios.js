@@ -12,12 +12,12 @@ const controlador = {
         }
     },
     perfil: function(req, res){
-        let id = req.session.cliente.id
+        let id = req.params.id
         let relaciones = {include:[{association: 'productos'}, {association: 'coment'}]}
         db.Cliente.findByPk(id, relaciones)
-        .then(function(clientes){
-            /*res.send(clientes)*/
-            res.render('profile', {usuarioLogueado:true, clientes:clientes})
+        .then(function(result){
+           //return res.send(result)
+            res.render('profile', {usuarioLogueado:true, clientes:result})
         })
         .catch(function(err){
             console.log(err)
@@ -28,6 +28,7 @@ const controlador = {
         let id = req.session.cliente.id
         db.Cliente.findByPk(id)
         .then(function(clientes){
+            
             res.render('editar', {
                 usuarioLogueado:true,
                 clientes:clientes
@@ -37,6 +38,32 @@ const controlador = {
             console.log(err)
         })
     },
+    perfilEditPost:  function (req, res) {
+        let idUser = req.params.id;
+        let info = req.body;
+        let errors = {};
+        if (req.body.email == "") {
+            errors.message = "El email está vacio";
+            res.locals.errors = errors;
+            return res.render('editar');
+         } else {
+         if (req.body.password != "") {
+            const newPass = bcrypt.hashSync(info.password, 12)
+            info.password = newPass}
+            else {
+                info.password = info.contraVieja
+            }
+            db.Cliente.update(info, {
+                where: [{ id: idUser }],
+            })
+                .then((result) => {
+                    return res.redirect("/users/perfil/" + idUser );
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }, 
     create: function(req,res){
         let {email, nombre, password, fecha_de_nacimiento, dni, foto_de_perfil} = req.body
         let errors = {}
@@ -56,9 +83,7 @@ const controlador = {
             return res.render('register'); 
         }
         else if(email.includes('@') && email.includes('.com')){
-                db.Cliente.findOne({
-
-                })
+                db.Cliente.findOne({where: [{email: req.body.email}]})
                 .then(function(resp){
                     if (resp != undefined) {
                         errors.message = 'El mail ya esta en uso';
@@ -83,9 +108,7 @@ const controlador = {
                             console.log(err)
                         })
                             }
-                        })
-                
-            
+                        })            
         }else{
             let errors= {}
             errors.message = 'Debes ingresar un email valido'
@@ -124,7 +147,7 @@ const controlador = {
                         }
                     )
                 }
-                res.redirect('/users/perfil/')
+                res.redirect('/users/perfil/'+ req.session.cliente.id)
             }else{
                 res.redirect('/users/register')
             }
@@ -136,24 +159,7 @@ const controlador = {
             console.log(err)
         })
     },
-    update: function(req, res){
-        let id = req.session.cliente.id
-        let {nombre, email} = req.body
-        db.Cliente.update({
-            nombre:nombre,
-            email:email
-        },{
-            where:{
-                id: id
-            }
-        })
-        .then(function(resp){
-            res.redirect('/users/perfil/' + id)
-        })
-        .catch(function(err){
-            console.log(err)
-        })
-    },
+    
     delete: function(req, res){
         let id = req.session.cliente.id
 

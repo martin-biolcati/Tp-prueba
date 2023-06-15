@@ -6,15 +6,18 @@
     <div class="d-flex align-items-center">
          
         <h2 class="products-title"><%= data.nombre %></h2> 
+
+        <% if(locals.clientes.id == data.prodclientes.id){ %>
         <p class="product-detail-description">
-            <a href="product-add.html">Editar</a>
+            <a href="/productos/editar_prod/<%= data.id %>">Editar</a>
         </p>
+        <% } %>
     </div>
     <div class="product-detail">
     
         <div class="row">
             <article class="col-12 col-lg-8 product-detail-info">
-                <p class="product-detail-description">Usuario:  <%= data.prodclientes.nombre %></p>
+                <p class="product-detail-description"> <a href="/users/perfil/<%= data.prodclientes.id %>"> Usuario:  <%= data.prodclientes.nombre %></a></p>
                 <img src=<%= data.image %> alt="" class="product-detail-img">
                 <p class="product-detail-description"><%= data.descripcion %></p>
             </article>
@@ -22,13 +25,13 @@
                     
                     <section class="comments">
                     
-                    <% for(let i=0; i<data.prodclientes.coment.length; i++){ %> 
+                    <% for(let i=0; i<data.coment.length; i++){ %> 
                     <article>
-                        <img src="<%= data.prodclientes.coment[i].foto_de_perfil%>" alt="">
+                        <img src="<%= data.coment[i].clientes.foto_de_perfil%>" alt="">
                         <div class="data">
                             <p class="user">
-                            <strong> <a href="/users/perfil"><%= data.prodclientes.coment[i].nombre %> </a> </strong>
-                            <%= data.prodclientes.coment[i].comentario %></p>
+                            <strong> <a href="/users/perfil/<%= data.coment[i].clientes.id %>"<%= data.id%>><%= data.coment[i].clientes.nombre %> </a> </strong>
+                            <%= data.coment[i].comentario %></p>
                         </div>
                     </article>
                     <%}%>

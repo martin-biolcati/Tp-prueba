@@ -17,15 +17,14 @@ const controladores={
     },
     descripcion: function(req, res){
         let id = req.params.id
-        let relaciones = {include:{association: 'prodclientes'
-        , include:{association: 'coment'}
-    }
-    }
+        let relaciones = {include:[{association: 'prodclientes'},{association: 'coment', include : [{association : 'clientes'}]}]
+            }
         data.Producto.findByPk(id,relaciones)
-        .then(function(data){
-            res.render('product', {
+        .then(function(result){
+           //return res.send(result)
+           return res.render('product', {
                 usuarioLogueado:false,
-                data
+                data:result
             })
         })
         .catch(function(err){
@@ -105,11 +104,29 @@ const controladores={
             producto_id: req.body.producto_id
         })
         .then(function(data){
-            res.redirect('/')
+            res.redirect('/productos/descripcion/'+ req.body.producto_id)
         })
         .catch(function(err){
             console.log(err)
         })
+    },
+    editar_prod: function(req, res){
+        let id = req.params.id
+        let relaciones = {include:[{association: 'prodclientes'},{association: 'coment'}]}
+        data.Producto.findByPk(id, relaciones)
+        .then(function(result){
+        
+            res.render('editar_prod', {
+                usuarioLogueado:true,
+                data: result
+            })
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+    },
+    editar_prod_post: function(req,res){
+        
     }
 }
 

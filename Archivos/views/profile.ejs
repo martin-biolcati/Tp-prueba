@@ -7,9 +7,9 @@
                 <i><%= clientes.nombre %></i><br>
                 <i>Fecha de nacimiento: <%= clientes.fecha_de_nacimiento %></i>
                 <i>Documento: <%= clientes.dni %></i>
-                <i> <%= clientes.foto_de_perfil %></i>
+                <i> <img class="foto_perfil_usuario" src=<%= clientes.foto_de_perfil %>></a></i>
                 <h1 class="main-title">
-                    <a href="/users/editar/">
+                    <a href="/users/editar/<%= clientes.id %>">
                         <i class="fas fa-cog"></i>
                     </a>
                 </h1>

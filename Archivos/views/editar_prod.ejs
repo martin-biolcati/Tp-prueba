@@ -1,0 +1,29 @@
+<%- include('./partials/head')  %>
+<%- include('./partials/header')  %>
+<!-- Novedades -->
+<div class="container products-wrapper">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title">Actualizar productos</h2>
+        </div>
+        <!-- Show the "ultimos" products -->
+        <h2 class="col-12"> 
+            <form class= "datosUsuarios" action="/productos/editar_prod/<%= data.id %>" method="POST">
+                <div>
+                    <label for="nombre">Nombre del producto:</label>
+                    <input type="text" name="nombre" value="<%= data.nombre %>">
+                </div>
+                <div>
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" name="descripcion" value="<%= data.descripcion %>">
+                </div>
+                <div>
+                    <label for="imagen">Foto del auto:</label>
+                    <input type="text" name="imagen" value="<%= data.image %>">
+                </div> 
+               
+                <button class="tengo_cuenta" type="submit">Actualizar auto</button>
+            </form>
+</div>
+            
+<%- include('./partials/footer') %>

@@ -9,5 +9,8 @@ router.get('/buscador', productos.search)
 router.post('/product-add', productos.create )
 router.post('/comentarioAdd', productos.createComentario )
 
+router.get('/editar_prod/:id', productos.editar_prod)
+router.post('/editar_prod/:id', productos.editar_prod_post )
+
 
 module.exports = router;

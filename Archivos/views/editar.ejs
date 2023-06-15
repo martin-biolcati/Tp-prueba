@@ -7,30 +7,34 @@
 				<h2 class="products-title">Editar mi perfil</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<form class= "datosUsuarios" action="" method="GET">
+			<form class= "datosUsuarios" action="/users/editar/<%= clientes.id %>" method="POST">
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email" name="email" value="">
+                    <input type="email" name="email" value="<%= clientes.email %>">
                 </div>
                     <div>
-                        <label for="usuario">Usuario:</label>
-                        <input type="text" name="usuario" value="">
+                        <label for="nombre">Usuario:</label>
+                        <input type="text" name="nombre" value="<%= clientes.nombre %>">
                     </div>
                     <div>
-                        <label for="contraseña">Contraseña:</label>
-                        <input type="password" name="contraseña" value="">
+                        <label for="password">Nueva contraseña:</label>
+                        <input type="password" name="password" value="">
                     </div>
                     <div>
-                        <label for="fecha">Fecha de nacimiento:</label>
-                        <input type="date" name="fecha" value="">
+                        <input type="hidden" name="contraseñaVieja" value="<%=clientes.password%>">
                     </div>
                     <div>
-                        <label for="documento">Nro de documento:</label>
-                        <input type="number" name="documento" value="">
+                        <label for="fecha_de_nacimiento">Fecha de nacimiento:</label>
+                        <input type="date" name="fecha_de_nacimiento" value="<%= clientes.fecha_de_nacimiento %>">
                     </div>
                     <div>
-                        <label for="imagen">Foto de perfil:</label>
-                        <input type="file" name="imagen" value="">
+                        <label for="dni">Nro de documento:</label>
+                        <input type="number" name="dni" value="<%= clientes.dni %>">
                     </div>
+                    <div>
+                        <label for="foto_de_perfil">Foto de perfil:</label>
+                        <input type="text" name="foto_de_perfil" value="<%= clientes.foto_de_perfil %>">
+                    </div>
+                    <button class="tengo_cuenta" type="submit">Cambiar</a></button>
         </div>
 <%- include('./partials/footer')  %>
