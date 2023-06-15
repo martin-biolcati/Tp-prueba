@@ -94,6 +94,22 @@ const controladores={
         .catch(function(err){
             console.log(err)
         })
+    },
+    createComentario: function(req,res){
+        let {comentario} = req.body
+        let id = req.session.cliente.id
+        
+        data.Comentario.create({
+            cliente_id:id,
+            comentario,
+            producto_id: req.body.producto_id
+        })
+        .then(function(data){
+            res.redirect('/')
+        })
+        .catch(function(err){
+            console.log(err)
+        })
     }
 }
 

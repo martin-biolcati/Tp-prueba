@@ -14,6 +14,7 @@
     
         <div class="row">
             <article class="col-12 col-lg-8 product-detail-info">
+                <p class="product-detail-description">Usuario:  <%= data.prodclientes.nombre %></p>
                 <img src=<%= data.image %> alt="" class="product-detail-img">
                 <p class="product-detail-description"><%= data.descripcion %></p>
             </article>
@@ -32,8 +33,9 @@
                     </article>
                     <%}%>
                 </section>
-                <form class="form" action="" method="POST">
-                    <input class="form-input" type="text" value="" placeholder="Agregar comentario">
+                <form class="form" action="/productos/comentarioAdd" method="POST">
+                    <input class="form-input" type="text" name="comentario" placeholder="Agregar comentario">
+                    <input type="text" name="producto_id" value="<%= data.id%>" hidden> 
                     <button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
                 </form>
                 <hr>

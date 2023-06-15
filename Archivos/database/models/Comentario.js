@@ -36,11 +36,11 @@ module.exports = function(sequelize, DataTypes){
         Comentarios.belongsTo(models.Producto, {
             as: 'productos',
             foreignKey: 'producto_id'
-        })/*
-        Comentarios.belongsTo(models.clientes, {
+        })
+        Comentarios.belongsTo(models.Cliente, {
             as: 'clientes',
             foreignKey: 'cliente_id'
-        })*/
+        })
     }
 
     return Comentarios

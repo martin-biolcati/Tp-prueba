@@ -2,19 +2,7 @@ const db = require('../database/models/index');
 const bcrypt = require('bcryptjs')
 const controlador = {
     register: function(req, res){
-        /*let errors = {}
-        if(req.body.email == "" && req.body.email){
-            errors.message = "El email no puede estar vacío."; 
-            res.locals.errors = errors;
-
-            return res.render('register'); 
-        }
-        if(req.body.password == "" || req.body.password.length <3 ){
-            errors.message = "La contraseña debe tener al menos 3 caracteres."; 
-            res.locals.errors = errors; 
-            return res.render('register'); 
-        }*/
-        res.render('register', {})
+        res.render('register')
     },
     login: function(req,res){
         if(req.session.cliente != undefined){
@@ -25,13 +13,16 @@ const controlador = {
     },
     perfil: function(req, res){
         let id = req.session.cliente.id
-        db.Cliente.findByPk(id)
+        let relaciones = {include:[{association: 'productos'}, {association: 'coment'}]}
+        db.Cliente.findByPk(id, relaciones)
         .then(function(clientes){
-            res.render('profile', {usuarioLogueado:true, clientes:clientes, })
+            /*res.send(clientes)*/
+            res.render('profile', {usuarioLogueado:true, clientes:clientes})
         })
         .catch(function(err){
             console.log(err)
         })
+        
     },
     perfilEdit: function(req, res){
         let id = req.session.cliente.id
@@ -48,30 +39,53 @@ const controlador = {
     },
     create: function(req,res){
         let {email, nombre, password, fecha_de_nacimiento, dni, foto_de_perfil} = req.body
-        if(email.includes('@') && email.includes('.com')){
-            if(password.length > 2){
-                let passEncriptada = bcrypt.hashSync(password, 12)
-                db.Cliente.create({
-                    email, 
-                    nombre, 
-                    password: passEncriptada, 
-                    fecha_de_nacimiento, 
-                    dni, 
-                    foto_de_perfil
+        let errors = {}
+        if(req.body.email == "" ){
+            errors.message = "El email no puede estar vacío."; 
+            res.locals.errors = errors;
+            return res.render('register'); 
+        }
+        else if(req.body.password == "" || req.body.password.length<2 ){
+            errors.message = "La contraseña debe tener al menos 3 caracteres."; 
+            res.locals.errors = errors; 
+            return res.render('register'); 
+        }
+        else if(req.body.nombre == "" ){
+            errors.message = "El nombre no puede estar vacio."; 
+            res.locals.errors = errors; 
+            return res.render('register'); 
+        }
+        else if(email.includes('@') && email.includes('.com')){
+                db.Cliente.findOne({
+
                 })
-                .then(function(resp){   
-                    console.log(resp);
-                    res.redirect('/users/login')
-                })
-                .catch(function(err){
-                    console.log(err)
-                })}
-                else{
-                    let errors= {}
-                    errors.message = 'Debes ingresar una contraseña con 3 caracteres como minimo'
-                    res.locals.errors = errors
-                    res.render('register')
-            }
+                .then(function(resp){
+                    if (resp != undefined) {
+                        errors.message = 'El mail ya esta en uso';
+                        res.locals.errors = errors; 
+                        return res.render('register'); 
+                    }
+                    else{
+                        let passEncriptada = bcrypt.hashSync(password, 12)
+                        db.Cliente.create({
+                            email, 
+                            nombre, 
+                            password: passEncriptada, 
+                            fecha_de_nacimiento, 
+                            dni, 
+                            foto_de_perfil
+                        })
+                        .then(function(resp){   
+                            console.log(resp);
+                            res.redirect('/users/login')
+                        })
+                        .catch(function(err){
+                            console.log(err)
+                        })
+                            }
+                        })
+                
+            
         }else{
             let errors= {}
             errors.message = 'Debes ingresar un email valido'

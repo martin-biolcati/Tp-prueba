@@ -10,7 +10,7 @@ const controller ={
                 ['created_at', 'DESC'], 
                 ],
             nest:true,
-            raw:true
+            
         })
         .then(function(data){
             console.log(data);

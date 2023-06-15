@@ -21,21 +21,17 @@
                         <input type="password" name="password" placeholder="Contraseña" value="">
                     </div>
                     <div>
-                        <label for="fecha">Fecha de nacimiento:</label>
-                        <input type="date" name="fecha_de_nacimiento" value="">
-                    </div>
-                    <div>
                         <input type="number" name="dni" placeholder="Nro de documento" value="">
                     </div>
                     <div>
-                        <label for="imagen">Foto de perfil:</label>
-                        <input type="file" name="foto_de_perfil" value="">
+                        <input type="text" placeholder="URL Foto de perfil" name="foto_de_perfil" value="">
+                    </div>
+                    <div>
+                        <input type="date" name="fecha_de_nacimiento" value="">
                     </div>
                     <br>
                     <button class="tengo_cuenta" type="submit">Crear cuenta</button>
                     <br>
-                    
-                                
                 </form>
             <% if(locals.errors){  %> 
                         <p class= “error”> <%= errors.message %> </p>

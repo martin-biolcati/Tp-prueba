@@ -3,17 +3,19 @@
 <!-- Datos del usuario "https://via.placeholder.com/150"-->
 <section class="info-usuario container products-wrapper">
     <div class="row">
-        <div class="img-container offset-3 col-2">
-        </div>
-        <div class="data-container col-6">
-            <div class="d-flex align-items-center ">
-                <h1 class="products-title"><%= clientes.nombre %></h1><br>
+            <div class="perfil_info">
+                <i><%= clientes.nombre %></i><br>
+                <i>Fecha de nacimiento: <%= clientes.fecha_de_nacimiento %></i>
+                <i>Documento: <%= clientes.dni %></i>
+                <i> <%= clientes.foto_de_perfil %></i>
                 <h1 class="main-title">
                     <a href="/users/editar/">
                         <i class="fas fa-cog"></i>
                     </a>
                 </h1>
-                <a class="btn mt-3 ml-4" href="">SEGUIR</a>
+                <form action="/users/delete/" method="POST">
+                    <input type="submit" value="Borrar cuenta" />
+                </form>
             </div>
         </div>
         </div>
@@ -25,18 +27,24 @@
         <section>
             <article>
                 <div>
-                    <h1 class="products-title">Nombre: <%= clientes.nombre %></h1>
+                    <h1 class="products-title">Cantidad de productos publicados: <%= clientes.productos.length %></h1>
+                    <% for( let i = 0; i < clientes.productos.length; i++ ) { %>
+                        <section class="product-box">
+                            <a href="/productos/descripcion/<%=clientes.id%>">
+                                <figure class="product-box_image">
+                                    <img src=<%= clientes.productos[i].image %> alt="foto de <%= clientes.productos[i].nombre %>">
+                                </figure>
+                                <article class="product-box_data">
+                                    <h2><%= clientes.productos[i].nombre %></h2> 
+                                    <p><%= clientes.productos[i].descripcion %></p>
+                                    <p>comentarios: </p>
+        
+                                </article>
+                            </a>
+                        </section>
+                    <% } %>
                 </div>
-                <p class="products-title">Fecha de nacimiento: <%= clientes.fecha_de_nacimiento %></p>
-                <p class="products-title">Documento: <%= clientes.dni %></p>
-                <p class="products-title"> <%= clientes.foto_de_perfil %></p>
-                <p class="products-title">Cantidad de productos publicados: 5<%=  %></p>
-                <div>
-                    <a class="products-title" href="/users/editar/">Editar perfil</a>
-                </div>
-                <form action="/users/delete/" method="POST">
-                    <input type="submit" value="Borrar cuenta" />
-                </form>
+                
             </article>
         </section>
     </div>

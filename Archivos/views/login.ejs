@@ -6,26 +6,24 @@
         <div class="col-12">
             <h2 class="products-title">Ingresar</h2>
         </div>
-        <!-- Show the "ultimos" products -->
-      
-            <form class= "datosUsuarios" action="/users/login" method="POST">
+        <div class="datosUsuarios2">
+            <div class="datosUsuarios">
+            <form  action="/users/login" method="POST">
                 <div>
-                    <label for="usuario">Email:</label>
-                    <input type="email" name="email" value="">
+                    <input type="email" placeholder="Email" name="email" value="">
                 </div>
                 <div>
-                    <label for="contraseña">Contraseña:</label>
-                    <input type="password" name="contraseña" value="">
+                    <input type="password" placeholder="Contraseña" name="contraseña" value="">
                 </div>
                 <div>
                     <label for="Recuerdame">Recuerdame</label>
                     <input type="checkbox" name="rememberMe">
                 </div>
-                <br>
+                
                 <button class="tengo_cuenta" type="submit">Ingresar</a></button>
             </form>
-                <br>
-                <br>
                 <button class="tengo_cuenta" type="submit"><a  href="/users/register">No tengo cuenta</a></button>
+            </div>
+        </div>
                   
 <%- include('./partials/footer')  %>
