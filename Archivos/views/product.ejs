@@ -26,9 +26,7 @@
                 <p class="product-detail-description"><%= data.descripcion %></p>
             </article>
                 <div class="col-12 col-lg-4">
-                    
                     <section class="comments">
-                    
                     <% for(let i=0; i<data.coment.length; i++){ %> 
                     <article>
                         <img src="<%= data.coment[i].clientes.foto_de_perfil%>" alt="">
@@ -48,7 +46,7 @@
                 </form>
                 <% } %>
                 <% if(locals.clientes == undefined) { %>
-                    <p class="product-detail-description_hover"><a href="/users/register">Debe estar logueado para comentar</a></p>
+                    <p class="product-detail-description_hover"><a href="/users/login">Debe estar logueado para comentar</a></p>
                 <% } %>
                 <hr>
             </div>
