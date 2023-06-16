@@ -363,9 +363,18 @@ hr {
 }
 .product-detail-description2 {
   padding: 15px 15px 15px 40px;
-  font-size: 1.8em;
+  font-size: 1.2em;
   line-height: 1.5;
   color: white;
+}
+.product-detail-description_hover {
+  padding: 15px 15px 15px 40px;
+  font-size: 1.8em;
+  line-height: 1.5;
+  color: black;
+}
+.product-detail-description_hover:hover{
+  color: goldenrod;
 }
 
 .product-detail-price {

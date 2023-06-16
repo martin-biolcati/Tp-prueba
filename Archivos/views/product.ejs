@@ -8,7 +8,8 @@
         <h2 class="products-title"><%= data.nombre %></h2> 
         <% if(locals.clientes){ %>
             <%  if(locals.clientes.id == data.prodclientes.id){ %>
-            <p class="product-detail-description2"><a href="/productos/editar_prod/<%= data.id %>">Editar</a></p>
+                <ul class="left-navbar">
+            <p class="product-detail-description2"><a href="/productos/editar_prod/<%= data.id %>">Editar</a></p></ul>
             <form action="/productos/delete" method="POST">
                 <input type="submit" value="Eliminar Producto" />
             </form>
@@ -20,7 +21,7 @@
     
         <div class="row">
             <article class="col-12 col-lg-8 product-detail-info">
-                <p class="product-detail-description"> <a href="/users/perfil/<%= data.prodclientes.id %>"> Usuario:  <%= data.prodclientes.nombre %></a></p>
+                <p class="product-detail-description_hover"> <a href="/users/perfil/<%= data.prodclientes.id %>"> Usuario: <%= data.prodclientes.nombre %></a></p>
                 <img src=<%= data.image %> alt="" class="product-detail-img">
                 <p class="product-detail-description"><%= data.descripcion %></p>
             </article>
@@ -47,7 +48,7 @@
                 </form>
                 <% } %>
                 <% if(locals.clientes == undefined) { %>
-                    <p class="product-detail-description"><a href="/users/register">Debe estar logueado para comentar</a></p>
+                    <p class="product-detail-description_hover"><a href="/users/register">Debe estar logueado para comentar</a></p>
                 <% } %>
                 <hr>
             </div>

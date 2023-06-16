@@ -88,7 +88,7 @@ const controladores={
         })
         .then(function(data){
             console.log(nombre,descripcion)
-            res.redirect('/users/perfil/')
+            res.redirect('/users/perfil/'+ id)
         })
         .catch(function(err){
             console.log(err)
