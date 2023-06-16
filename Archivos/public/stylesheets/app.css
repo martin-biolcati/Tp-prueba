@@ -211,6 +211,7 @@ hr {
   transition: 300ms;
   margin: 20px 0;
   font-family: 'Hind', sans-serif;
+  
 }
 
 .product-box a {
@@ -359,6 +360,12 @@ hr {
   font-size: 1.8em;
   line-height: 1.5;
   color: black;
+}
+.product-detail-description2 {
+  padding: 15px 15px 15px 40px;
+  font-size: 1.8em;
+  line-height: 1.5;
+  color: white;
 }
 
 .product-detail-price {
@@ -542,6 +549,7 @@ textarea.form-input {
   border-radius: 50px;
   width: 100%;
   height: 80px;
+  
 }
 
 /*====== Media-Queries ======*/

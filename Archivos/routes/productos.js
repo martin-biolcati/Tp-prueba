@@ -12,5 +12,7 @@ router.post('/comentarioAdd', productos.createComentario )
 router.get('/editar_prod/:id', productos.editar_prod)
 router.post('/editar_prod/:id', productos.editar_prod_post )
 
+router.post('/delete', productos.delete)
+
 
 module.exports = router;

@@ -12,26 +12,26 @@
             <div class=" datosUsuarios">
             <form  action="/users/register" method="POST">
                 <div>
-                    <input type="email" name="email" placeholder="Email" value="">
+                    <i class="fa-regular fa-envelope"></i><input type="email" name="email" placeholder="Email" value="">
                 </div>
-                    <div>
-                        <input type="text" name="nombre" placeholder='Nombre'value="">
-                    </div>
-                    <div>
-                        <input type="password" name="password" placeholder="Contraseña" value="">
-                    </div>
-                    <div>
-                        <input type="number" name="dni" placeholder="Nro de documento" value="">
-                    </div>
-                    <div>
-                        <input type="text" placeholder="URL Foto de perfil" name="foto_de_perfil" value="">
-                    </div>
-                    <div>
-                        <input type="date" name="fecha_de_nacimiento" value="">
-                    </div>
-                    <br>
-                    <button class="tengo_cuenta" type="submit">Crear cuenta</button>
-                    <br>
+                <div>
+                    <i class="fas fa-user"></i><input type="text" name="nombre" placeholder='Nombre'value="">
+                </div>
+                <div>
+                    <i class="fa-solid fa-lock"></i><input type="password" name="password" placeholder="Contraseña" value="">
+                </div>
+                <div>
+                    <i class="fa-solid fa-passport"></i><input type="number" name="dni" placeholder="Nro de documento" value="">
+                </div>
+                <div>
+                    <i class="fa-solid fa-image"></i><input type="text" placeholder="URL Foto de perfil" name="foto_de_perfil" value="">
+                </div>
+                <div>
+                    <i class="fa-solid fa-calendar-days"></i><input type="date" name="fecha_de_nacimiento" value="">
+                </div>
+                <br>
+                <button class="tengo_cuenta" type="submit">Crear cuenta</button>
+                <br>
                 </form>
             <% if(locals.errors){  %> 
                         <p class= “error”> <%= errors.message %> </p>

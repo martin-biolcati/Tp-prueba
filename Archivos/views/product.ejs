@@ -8,8 +8,12 @@
         <h2 class="products-title"><%= data.nombre %></h2> 
         <% if(locals.clientes){ %>
             <%  if(locals.clientes.id == data.prodclientes.id){ %>
-            <p class="product-detail-description"><a href="/productos/editar_prod/<%= data.id %>">Editar</a></p>
+            <p class="product-detail-description2"><a href="/productos/editar_prod/<%= data.id %>">Editar</a></p>
+            <form action="/productos/delete" method="POST">
+                <input type="submit" value="Eliminar Producto" />
+            </form>
             <% } %>
+            
         <% } %>
     </div>
     <div class="product-detail">
@@ -41,6 +45,9 @@
                     <input type="text" name="producto_id" value="<%= data.id%>" hidden> 
                     <button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
                 </form>
+                <% } %>
+                <% if(locals.clientes == undefined) { %>
+                    <p class="product-detail-description"><a href="/users/register">Debe estar logueado para comentar</a></p>
                 <% } %>
                 <hr>
             </div>

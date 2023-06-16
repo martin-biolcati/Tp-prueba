@@ -156,6 +156,21 @@ const controladores={
                     console.log(err);
                 });
         }
+    },
+    delete: function(req, res){
+        let idProd = req.params.id;
+        let idUser = req.session.cliente.id
+        data.Producto.destroy({
+            where:{
+                id: idProd
+            }
+        })
+        .then(function(resp){
+            res.redirect('/users/perfil/' + idUser )
+        })
+        .catch(function(err){
+            console.log(err)
+        })
     }
 }
 

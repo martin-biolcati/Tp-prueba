@@ -4,18 +4,18 @@
 <section class="info-usuario container products-wrapper">
     <div class="row">
             <div class="perfil_info">
-                <i><%= clientes.nombre %></i><br>
+                <i><%= clientes.nombre %></i>
                 <i>Fecha de nacimiento: <%= clientes.fecha_de_nacimiento %></i>
                 <i>Documento: <%= clientes.dni %></i>
-                <i> <img class="foto_perfil_usuario" src=<%= clientes.foto_de_perfil %>></a></i>
+                <form action="/users/delete/" method="POST">
+                    <input type="submit" value="Borrar cuenta" />
+                </form>
                 <h1 class="main-title">
                     <a href="/users/editar/<%= clientes.id %>">
                         <i class="fas fa-cog"></i>
                     </a>
                 </h1>
-                <form action="/users/delete/" method="POST">
-                    <input type="submit" value="Borrar cuenta" />
-                </form>
+                <i> <img class="foto_perfil_usuario" src=<%= clientes.foto_de_perfil %>></a></i>
             </div>
         </div>
         </div>
@@ -23,29 +23,25 @@
 </section>
 
 <div class="container products-wrapper">
-    <div class="row"> 
-        <section>
-            <article>
-                <div>
-                    <h1 class="products-title">Cantidad de productos publicados: <%= clientes.productos.length %></h1>
-                    <% for( let i = 0; i < clientes.productos.length; i++ ) { %>
-                        <section class="product-box">
-                            <a href="/productos/descripcion/<%=clientes.productos[i].id%>">
-                                <figure class="product-box_image">
-                                    <img src=<%= clientes.productos[i].image %> alt="foto de <%= clientes.productos[i].nombre %>">
-                                </figure>
-                                <article class="product-box_data">
-                                    <h2><%= clientes.productos[i].nombre %></h2> 
-                                    <p><%= clientes.productos[i].descripcion %></p>
-                                    <p>comentarios: </p>
-        
-                                </article>
-                            </a>
-                        </section>
-                    <% } %>
-                </div>
-                
-            </article>
-        </section>
+    <h1 class="products-title">Cantidad de productos publicados: <%= clientes.productos.length %></h1>
+    <div class="row">
+        <% for( let i = 0; i < clientes.productos.length; i++ ) { %>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <section class="product-box">
+                    <a href="/productos/descripcion/<%=clientes.productos[i].id%>">
+                        <figure class="product-box_image">
+                            <img src=<%= clientes.productos[i].image %> alt="foto de <%= clientes.productos[i].nombre %>">
+                        </figure>
+                        <article class="product-box_data">
+                            <h2><%= clientes.productos[i].nombre %></h2> 
+                            <p><%= clientes.productos[i].descripcion %></p>
+                            <p>comentarios: </p>
+                        </article>
+                    </a>
+                </section>
+            </div>  
+        <% } %>
+    
     </div>
+</div>
 <%- include('./partials/footer')  %>
