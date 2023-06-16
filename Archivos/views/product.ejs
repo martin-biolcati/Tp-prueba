@@ -6,11 +6,10 @@
     <div class="d-flex align-items-center">
          
         <h2 class="products-title"><%= data.nombre %></h2> 
-
-        <% if(locals.clientes.id == data.prodclientes.id){ %>
-        <p class="product-detail-description">
-            <a href="/productos/editar_prod/<%= data.id %>">Editar</a>
-        </p>
+        <% if(locals.clientes){ %>
+            <%  if(locals.clientes.id == data.prodclientes.id){ %>
+            <p class="product-detail-description"><a href="/productos/editar_prod/<%= data.id %>">Editar</a></p>
+            <% } %>
         <% } %>
     </div>
     <div class="product-detail">
@@ -36,11 +35,13 @@
                     </article>
                     <%}%>
                 </section>
+                <% if (locals.clientes != undefined){ %>
                 <form class="form" action="/productos/comentarioAdd" method="POST">
                     <input class="form-input" type="text" name="comentario" placeholder="Agregar comentario">
                     <input type="text" name="producto_id" value="<%= data.id%>" hidden> 
                     <button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
                 </form>
+                <% } %>
                 <hr>
             </div>
         </div>

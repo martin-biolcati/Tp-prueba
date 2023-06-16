@@ -126,7 +126,36 @@ const controladores={
         })
     },
     editar_prod_post: function(req,res){
-        
+        let idProd = req.params.id;
+        let idUser = req.session.cliente.id
+        let info = req.body;
+        let errors = {};
+        if (req.body.nombre == "") {
+            errors.message = "El nombre está vacio";
+            res.locals.errors = errors;
+            return res.render('editar');
+         }
+        else if (req.body.descripcion == "") {
+            errors.message = "La descripcion está vacia";
+            res.locals.errors = errors;
+            return res.render('editar');
+         }
+        else if (req.body.imagen == "") {
+            errors.message = "La URL de imagen está vacia";
+            res.locals.errors = errors;
+            return res.render('editar');
+         }
+        else {
+            data.Producto.update(info, {
+                where: [{ id: idProd }],
+            })
+                .then((result) => {
+                    return res.redirect("/users/perfil/" + idUser  );
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     }
 }
 

@@ -30,7 +30,7 @@
                     <h1 class="products-title">Cantidad de productos publicados: <%= clientes.productos.length %></h1>
                     <% for( let i = 0; i < clientes.productos.length; i++ ) { %>
                         <section class="product-box">
-                            <a href="/productos/descripcion/<%=clientes.id%>">
+                            <a href="/productos/descripcion/<%=clientes.productos[i].id%>">
                                 <figure class="product-box_image">
                                     <img src=<%= clientes.productos[i].image %> alt="foto de <%= clientes.productos[i].nombre %>">
                                 </figure>

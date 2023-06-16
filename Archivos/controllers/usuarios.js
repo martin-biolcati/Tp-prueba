@@ -16,8 +16,8 @@ const controlador = {
         let relaciones = {include:[{association: 'productos'}, {association: 'coment'}]}
         db.Cliente.findByPk(id, relaciones)
         .then(function(result){
-           //return res.send(result)
-            res.render('profile', {usuarioLogueado:true, clientes:result})
+            //return res.send(result)
+            res.render('profile', {usuarioLogueado:true, clientes:result,})
         })
         .catch(function(err){
             console.log(err)
